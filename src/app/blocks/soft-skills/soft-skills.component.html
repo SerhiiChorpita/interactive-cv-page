@@ -1,1 +1,43 @@
-<p>soft-skills works!</p>
+<div class="sticky">
+    <h4>Soft skills</h4>
+    <ng-container *ngIf="editStatusS">
+        <button class="addNewSoftSkill-btn" (click)="openAddForm()"></button>
+    </ng-container>
+</div>
+<ng-container *ngIf="addNewSoftSkill">
+    <div class="addingForm">
+        <form class="col-12">
+            <div class="col-12 mb-3">
+                <input type="text" class="form-control" placeholder="write your new soft skill..">
+            </div>
+            <div class="col-12 mb-3">
+                <textarea type="text" class="form-control"
+                    placeholder="write description for your soft skill.."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" (click)="openAddForm()">Submit</button>
+        </form>
+    </div>
+</ng-container>
+<div class="soft-skills" onchange="ngOnChanges(editStatusS)">
+    <ng-container *ngFor="let skill of softSkills; index as i">
+        <div class="container my-2">
+            <div class="container row d-flex align-items-center">
+                <label (click)="arrowDirection(i)">
+                    <input [class]="editStatusS?'form-control':'form-control-plaintext'" class="collapsed" type="text"
+                        [style]="!skill.editStatus?'cursor:pointer':'cursor:text'" data-bs-toggle="collapse"
+                        [value]="skill.arrowDirection?skill.name+'⮙':skill.name+'⮛'" aria-expanded="true"
+                        [disabled]="!skill.editStatus">
+                </label>
+                <ng-container *ngIf="editStatusS">
+                    <div [class]="skill.editStatus?'save':'pencil-skill'"
+                        (click)="skill.editStatus?saveChanges(i):changeskill(i)">
+                    </div>
+                </ng-container>
+            </div>
+            <div [class]="softSkills[i].arrowDirection?'collapse show':'collapse'" id="skillname">
+                <textarea class="textSkill card card-body"
+                    [disabled]="!skill.editStatus">{{ skill.description }}</textarea>
+            </div>
+        </div>
+    </ng-container>
+</div>

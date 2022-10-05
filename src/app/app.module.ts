@@ -7,6 +7,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { ContactsComponent } from './blocks/contacts/contacts.component';
 import { SoftSkillsComponent } from './blocks/soft-skills/soft-skills.component';
 import { TechSkillsComponent } from './blocks/tech-skills/tech-skills.component';
+import { ExperienceComponent } from './blocks/experience/experience.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { TechSkillsComponent } from './blocks/tech-skills/tech-skills.component'
     MainPageComponent,
     ContactsComponent,
     SoftSkillsComponent,
-    TechSkillsComponent
+    TechSkillsComponent,
+    ExperienceComponent
   ],
   imports: [
     BrowserModule,

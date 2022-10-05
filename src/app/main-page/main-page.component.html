@@ -1,10 +1,24 @@
 <div class="main-block container">
     <div class="main-block__top">
         <div class="main-block__top__avatar">
+            <div class="countProj">Number of projects: <span [style]="projCount===0?'color:red;':'color:green'">{{
+                    projCount }}</span></div>
         </div>
         <div class="main-block__top__contacts">
-            <app-contacts></app-contacts>
+            <app-contacts [editStatusC]="checkEditStatus" (changeValue)="changeValue($event)"></app-contacts>
         </div>
     </div>
-    <div class="main-block__bottom container"></div>
+    <div class="pt-2 p-0 main-block__bottom container">
+        <div class="p-1 main-block__bottom__left">
+            <div class="p-1 mb-3 main-block__bottom__left__1">
+                <app-soft-skills [editStatusS]="checkEditStatus"></app-soft-skills>
+            </div>
+            <div class="p-1 main-block__bottom__left__2">
+                <app-tech-skills [editStatusT]="checkEditStatus"></app-tech-skills>
+            </div>
+        </div>
+        <div class="p-1 main-block__bottom__right">
+            <app-experience [editStatusE]="checkEditStatus" (projectCount)="setProjNumber($event)"></app-experience>
+        </div>
+    </div>
 </div>

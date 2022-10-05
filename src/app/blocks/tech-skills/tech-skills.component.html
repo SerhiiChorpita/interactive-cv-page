@@ -1,1 +1,47 @@
-<p>tech-skills works!</p>
+<div class="sticky">
+    <h4>Tech skills</h4>
+    <ng-container *ngIf="editStatusT">
+        <button class="addNewTechSkill-btn"></button>
+    </ng-container>
+</div>
+<div class="tech-skills" onchange="ngOnChanges(editStatusS)">
+    <ng-container *ngFor="let skill of techSkills; index as i">
+        <div class="container my-2">
+            <div class="container row d-flex align-items-center">
+                <label (click)="arrowDirection(i)">
+                    <input [class]="editStatusT?'form-control':'form-control-plaintext'" class="collapsed" type="text"
+                        data-bs-toggle="collapse" [value]="skill.arrowDirection?skill.name+'⮙':skill.name+'⮛'"
+                        aria-expanded="true" [disabled]="!skill.editStatus">
+                </label>
+                <ng-container *ngIf="editStatusT">
+                    <div [class]="skill.editStatus?'save':'pencil-skill'"
+                        (click)="skill.editStatus?saveChanges(i):changeskill(i)">
+                    </div>
+                </ng-container>
+            </div>
+            <div [class]="techSkills[i].arrowDirection?'collapse show':'collapse'" id="skillname">
+                <textarea class="textSkill card card-body"
+                    [disabled]="!skill.editStatus">{{ skill.description }}</textarea>
+            </div>
+        </div>
+    </ng-container>
+</div>
+
+<ng-container *ngIf="addNewTechSkill">
+    <form>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</ng-container>

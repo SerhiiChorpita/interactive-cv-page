@@ -1,0 +1,42 @@
+<div class="sticky mt-1">
+    <h4>Experience</h4>
+    <ng-container *ngIf="editStatusE">
+        <button class="addNewExpSkill-btn"></button>
+    </ng-container>
+</div>
+<p class="mb-3">
+    <ng-container *ngIf="allProjects.length === 0">
+        (there is no projects)
+    </ng-container>
+    <ng-container *ngIf="allProjects.length === 1">
+        (my project)
+    </ng-container>
+    <ng-container *ngIf="allProjects.length > 1">
+        (my projects)
+    </ng-container>
+</p>
+<div class="main-container">
+    <ng-container *ngFor="let proj of allProjects; index as i">
+        <div class="box">
+            <div class="card" style="width: 18rem;">
+                <div class="image-box">
+                    <img [src]="proj.imagePath" class="card-img-top">
+                    <ng-container *ngIf="editStatusE">
+                        <div class="tools">
+                            <div class="m-1 I1" [class]="proj.editStatus? 'save':'pencil'"
+                                (click)="proj.editStatus?saveChanges(i):changeEditStatus(i)">
+                            </div>
+                            <div class="m-1 I2 basket" (click)="deleteElem(i,proj.name)"></div>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="card-body">
+                    <h4>{{ proj.name }}</h4>
+                    <textarea [value]="proj.description" style="height:140px"
+                        [class]="proj.editStatus?'form-control':'form-control-plaintext'"
+                        [readonly]="!proj.editStatus"></textarea>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>

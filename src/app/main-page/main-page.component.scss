@@ -6,10 +6,13 @@
   justify-content: space-evenly;
   align-items: center;
   width: 810px;
-  height: 1124px;
+  min-height: 1124px;
+  height: fit-content;
   background-color: $mainColor;
   outline: 1px solid rgba(211, 211, 211, 0.788);
   outline-offset: 1px;
+  text-align: center;
+
   &__top {
     display: flex;
     flex-flow: row nowrap;
@@ -23,6 +26,8 @@
       border: 2px solid white;
       box-shadow: 0px 0px 9px 3px rgba(128, 128, 128, 0.5);
       transition: all 0.1s;
+      min-height: 280px;
+      margin: 10px auto;
       &:hover {
         box-shadow: 0px 0px 9px 3px white;
         width: 35%;
@@ -31,7 +36,9 @@
       }
     }
     &__avatar {
-      display: block;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
       width: 34%;
       height: 100%;
       background-color: beige;
@@ -51,8 +58,37 @@
     }
   }
   &__bottom {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
     height: 67%;
     background-color: ghostwhite;
+    &__left,
+    &__right {
+      display: flex;
+      flex-flow: column;
+      width: 50%;
+    }
+    &__left {
+      justify-content: space-between;
+      height: 100%;
+      &__1,
+      &__2 {
+        border-right: 1px solid $mainColor;
+        height: 48%;
+        overflow: auto;
+        border-bottom: 1px solid white;
+        border: 1px solid transparent;
+        &:hover {
+          border: 1px solid $mainColor;
+          border-radius: 1px;
+          background-color: beige;
+        }
+      }
+    }
+    &__right {
+      border-left: 1px solid $mainColor;
+      height: fit-content;
+    }
   }
 }

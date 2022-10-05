@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-contacts',
@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contacts.component.scss']
 })
 export class ContactsComponent implements OnInit {
+  @Input() editStatusC = false;
+  @Output() changeValue = new EventEmitter<boolean>();
 
-  editAll = false;
-  editAllBlue = 'url(../../../assets/additional-pictures/edit-blue.svg)';
-  editAllBlack = 'url(../../../assets/additional-pictures/edit-black.svg)';
+  editStatusCBlue = 'url(../../../assets/additional-pictures/edit-blue.svg)';
+  editStatusCBlack = 'url(../../../assets/additional-pictures/edit-black.svg)';
 
 
   editName = false;
@@ -24,13 +25,25 @@ export class ContactsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  editallStatus() {
-    this.editAll = !this.editAll;
-    if (!this.editAll) {
-      this.editName = false;
-      this.editTel = false;
-      this.editEmail = false;
-      this.editLinkedIn = false;
+  editCStatus() {
+    this.editStatusC = !this.editStatusC;
+    this.changeValue.emit(this.editStatusC);
+  }
+
+  saveChanges() {
+    let check = confirm('Do you want to save the changes');
+    if (check) {
+      this.editStatusC = !this.editStatusC;
+      if (!this.editStatusC) {
+        this.editName = false;
+        this.editTel = false;
+        this.editEmail = false;
+        this.editLinkedIn = false;
+        this.changeValue.emit(this.editStatusC);
+
+      }
+    } else {
+      return
     }
   }
   editNameStatus() {
@@ -47,3 +60,7 @@ export class ContactsComponent implements OnInit {
   }
 
 }
+function Import() {
+  throw new Error('Function not implemented.');
+}
+
