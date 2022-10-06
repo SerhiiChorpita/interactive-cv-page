@@ -9,6 +9,20 @@ export class ExperienceComponent implements OnInit {
   @Input() editStatusE!: boolean;
   @Output() projectCount = new EventEmitter<number>();
 
+  addNewProject = false;
+
+  newProject = {
+    name: '',
+    imagePath: '',
+    description: '',
+    editStatus: false
+  }
+
+  newProjName!: string;
+  newProjimagePath!: string;
+  newProjDesc!: string;
+
+
   checkTechStatus1 = false;
   editStatus1 = false;
 
@@ -22,21 +36,18 @@ export class ExperienceComponent implements OnInit {
 
   allProjects = [
     {
-      id: this.projectId,
       name: 'FlightAware',
       imagePath: '../../../assets/projects-image/fly-tracking.png',
       description: 'Best Flight Tracker: Live Tracking Maps, Flight Status, and Airport Delays for airline flights, private/GA flights, and airports.',
       editStatus: false
     },
     {
-      id: this.projectId,
       name: 'YouTube',
       imagePath: '../../../assets/projects-image/youtube.jpg',
       description: 'Watch your favorite videos, listen to your favorite songs, upload your own videos and share them with friends, family and the whole world.',
       editStatus: false
     },
     {
-      id: this.projectId,
       name: 'Google',
       imagePath: '../../../assets/projects-image/Google.webp',
       description: 'Search the world`s information, including webpages, images, videos and more.Google has many special features to help you find exactly what you`re looking for.',
@@ -49,11 +60,27 @@ export class ExperienceComponent implements OnInit {
   ngOnInit(): void {
     this.projectCount.emit(this.allProjects.length);
   }
+
   ngOnChanges(changes: boolean): void {
     this.allProjects.forEach(element => {
       element.editStatus = false;
     });
   }
+
+  addnewProject() {
+    this.newProject = {
+      name: this.newProjName,
+      imagePath: this.newProjimagePath,
+      description: this.newProjDesc,
+      editStatus: false
+    }
+    let newProj = this.newProject;
+    this.allProjects.push(newProj);
+    this.projectCount.emit(this.allProjects.length);
+    console.log(newProj);
+
+  }
+
   changeEditStatus(index: number) {
     this.allProjects[index].editStatus = !this.allProjects[index].editStatus;
   }
@@ -76,7 +103,10 @@ export class ExperienceComponent implements OnInit {
     } else {
       return
     }
+  }
 
+  openAddForm() {
+    this.addNewProject = !this.addNewProject;
   }
 
 }

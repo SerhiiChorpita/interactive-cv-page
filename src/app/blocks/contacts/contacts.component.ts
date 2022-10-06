@@ -12,13 +12,18 @@ export class ContactsComponent implements OnInit {
   editStatusCBlue = 'url(../../../assets/additional-pictures/edit-blue.svg)';
   editStatusCBlack = 'url(../../../assets/additional-pictures/edit-black.svg)';
 
-
+  userData = {
+    name: 'Petro Petriv',
+    tel: '+38 (093) 123 4567',
+    email: 'petro.petriv@gmail.com',
+    linkedIn: 'www.linkedin.com/in/petro-petriv',
+  }
   editName = false;
   editTel = false;
   editEmail = false;
   editLinkedIn = false;
 
-  pencilImg = '../../../assets/additional-pictures/pen-blue.svg'
+  pencilImg = 'url(../../assets/logo-avatar/avatar.png)'
 
   constructor() { }
 
@@ -40,7 +45,6 @@ export class ContactsComponent implements OnInit {
         this.editEmail = false;
         this.editLinkedIn = false;
         this.changeValue.emit(this.editStatusC);
-
       }
     } else {
       return
@@ -58,9 +62,36 @@ export class ContactsComponent implements OnInit {
   editLinkedInStatus() {
     this.editLinkedIn = !this.editLinkedIn;
   }
-
+  saveChangesName() {
+    let check = confirm('Do you want to save new name?');
+    if (check) {
+      this.editName = !this.editName;
+    } else {
+      return
+    }
+  }
+  saveChangesTel() {
+    let check = confirm('Do you want to save new phone number?');
+    if (check) {
+      this.editTel = !this.editTel;
+    } else {
+      return
+    }
+  }
+  saveChangesEmail() {
+    let check = confirm('Do you want to save new email?');
+    if (check) {
+      this.editEmail = !this.editEmail;
+    } else {
+      return
+    }
+  }
+  saveChangesLink() {
+    let check = confirm('Do you want to save new linkedIn address?');
+    if (check) {
+      this.editLinkedIn = !this.editLinkedIn;
+    } else {
+      return
+    }
+  }
 }
-function Import() {
-  throw new Error('Function not implemented.');
-}
-

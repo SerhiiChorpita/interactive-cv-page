@@ -8,32 +8,33 @@
     <div class="contacts">
         <div class="d-flex justify-content-between align-items-center">
             <input type="text" [class]="editName?'form-control':'form-control-plaintext'" class="fs-2"
-                value="Petro Petriv" [disabled]="!editName">
+                [value]="userData.name" [disabled]="!editName">
             <ng-container *ngIf="editStatusC">
                 <div class="col-1"></div>
-                <div [class]="editName?'save':'pencil-name'" (click)="editNameStatus()"></div>
+                <div [class]="editName?'save':'pencil-name'" (click)="editName?saveChangesName():editNameStatus()">
+                </div>
             </ng-container>
-
         </div>
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label fw-semibold">Tel:</label>
             <div class="d-flex align-items-center col-sm-10">
-                <input type="text" [class]="editTel?'form-control':'form-control-plaintext'" value="+38 (093) 123 4567"
+                <input type="text" [class]="editTel?'form-control':'form-control-plaintext'" [value]="userData.tel"
                     [disabled]="!editTel">
                 <ng-container *ngIf="editStatusC">
                     <div class="col-1"></div>
-                    <div [class]="editTel?'save':'pencil-tel'" (click)="editTelStatus()"></div>
+                    <div [class]="editTel?'save':'pencil-tel'" (click)="editTel?saveChangesTel():editTelStatus()"></div>
                 </ng-container>
             </div>
         </div>
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label fw-semibold">Email:</label>
             <div class="d-flex align-items-center col-sm-10">
-                <input type="text" [class]="editEmail?'form-control':'form-control-plaintext'"
-                    value="petro.petriv@gmail.com" [disabled]="!editEmail">
+                <input type="text" [class]="editEmail?'form-control':'form-control-plaintext'" [value]="userData.email"
+                    [disabled]="!editEmail">
                 <ng-container *ngIf="editStatusC">
                     <div class="col-1"></div>
-                    <div [class]="editEmail?'save':'pencil-email'" (click)="editEmailStatus()"></div>
+                    <div [class]="editEmail?'save':'pencil-email'"
+                        (click)="editEmail?saveChangesEmail():editEmailStatus()"></div>
                 </ng-container>
             </div>
         </div>
@@ -41,10 +42,11 @@
             <label for="staticEmail" class="col-sm-2 col-form-label fw-semibold">LinkedIn:</label>
             <div class="d-flex align-items-center col-sm-10">
                 <input type="text" [class]="editLinkedIn?'form-control':'form-control-plaintext'"
-                    value="www.linkedin.com/in/petro-petriv" [disabled]="!editLinkedIn">
+                    [value]="userData.linkedIn" [disabled]="!editLinkedIn">
                 <ng-container *ngIf="editStatusC">
                     <div class="col-1"></div>
-                    <div [class]="editLinkedIn?'save':'pencil-linkedin'" (click)="editLinkedInStatus()"></div>
+                    <div [class]="editLinkedIn?'save':'pencil-linkedin'"
+                        (click)="editLinkedIn?saveChangesLink():editLinkedInStatus()"></div>
                 </ng-container>
             </div>
         </div>

@@ -37,15 +37,51 @@
     }
     &__avatar {
       display: flex;
-      justify-content: center;
-      align-items: flex-end;
+      justify-content: space-between;
+      align-content: space-between;
+      flex-direction: column-reverse;
       width: 34%;
       height: 100%;
       background-color: beige;
-      background-image: url(../../assets/logo-avatar/avatar.png);
+      padding: 10px 10px 0 10px;
+      // background-image: url(../../assets/logo-avatar/avatar.png);
       background-size: 95%;
       background-repeat: no-repeat;
       background-position: center;
+    }
+
+    .pencil {
+      cursor: pointer;
+      display: block;
+      width: 25px;
+      height: 25px;
+      background-image: url(../../assets/additional-pictures/pen-blue.svg);
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: center;
+      transition: all 0.3s;
+      &:hover {
+        background-image: url(../../assets/additional-pictures/pen-black.svg);
+      }
+    }
+    .save {
+      cursor: pointer;
+      display: block;
+      width: 25px;
+      height: 25px;
+      background-image: url(../../assets/additional-pictures/save-black.svg);
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: center;
+      border-radius: 5px;
+      animation-name: color;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      transition: all 0.3s;
+      outline: 2px solid transparent;
+      &:hover {
+        background-image: url(../../assets/additional-pictures/save-green.svg);
+      }
     }
     &__contacts {
       display: block;
@@ -56,6 +92,27 @@
         width: 65%;
       }
     }
+  }
+  .load-url {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+    &__input {
+      width: 80%;
+      border-radius: 15px 0 0 15px;
+    }
+    &__btn {
+      width: 20%;
+      border-radius: 0 15px 15px 0;
+    }
+  }
+  .countProj {
+    background-color: beige;
+    border-radius: 15px;
+    box-shadow: 1px 1px transparent;
   }
   &__bottom {
     display: flex;

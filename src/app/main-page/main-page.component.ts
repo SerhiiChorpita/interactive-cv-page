@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Scroll } from '@angular/router';
 
 @Component({
   selector: 'app-main-page',
@@ -12,18 +11,42 @@ export class MainPageComponent implements OnInit {
 
   projCount = 0;
 
+  newImage = ``;
+  avatarPath = '../../assets/logo-avatar/avatar.png';
+  currentUrl = `url(${this.avatarPath})`;
+  editAvatar = false;
   constructor() { }
 
   ngOnInit(): void {
   }
+
   changeValue(status: boolean) {
     this.checkEditStatus = status;
+    this.editAvatar = false
   }
+
   setProjNumber(value: number) {
     setTimeout(() => {
       this.projCount = value;
     }, 0)
   }
+  editAvatarStatus() {
+    this.editAvatar = !this.editAvatar;
+  }
 
+  loadImage() {
+    this.avatarPath = this.newImage;
+    console.log(this.avatarPath);
+    console.log(this.newImage);
+    this.currentUrl = `url(${this.avatarPath})`;
+  }
 
+  saveChanges() {
+    let check = confirm('Do you want to save current image?');
+    if (check) {
+      this.editAvatarStatus()
+    } else {
+      return
+    }
+  }
 }

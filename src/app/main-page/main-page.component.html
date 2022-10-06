@@ -1,8 +1,19 @@
 <div class="main-block container">
+    <ng-container *ngIf="editAvatar">
+        <div class="load-url pt-1">
+            <input type="text" class="load-url__input form-control " placeholder="paste your new avatar url here.."
+                [value]="avatarPath" [(ngModel)]="newImage">
+            <button class="btn load-url__btn btn-light" (click)="loadImage()">Load</button>
+        </div>
+    </ng-container>
     <div class="main-block__top">
-        <div class="main-block__top__avatar">
+        <div class="main-block__top__avatar" [style.background-image]="currentUrl">
             <div class="countProj">Number of projects: <span [style]="projCount===0?'color:red;':'color:green'">{{
                     projCount }}</span></div>
+            <ng-container *ngIf="checkEditStatus">
+                <div *ngIf="!editAvatar" class="pencil" (click)="editAvatarStatus()"></div>
+                <div *ngIf="editAvatar" class="save" (click)="saveChanges()"></div>
+            </ng-container>
         </div>
         <div class="main-block__top__contacts">
             <app-contacts [editStatusC]="checkEditStatus" (changeValue)="changeValue($event)"></app-contacts>

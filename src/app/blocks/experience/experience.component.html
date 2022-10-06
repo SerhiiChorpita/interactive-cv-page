@@ -1,9 +1,28 @@
 <div class="sticky mt-1">
     <h4>Experience</h4>
     <ng-container *ngIf="editStatusE">
-        <button class="addNewExpSkill-btn"></button>
+        <button class="addNewExpSkill-btn" (click)="openAddForm()"></button>
     </ng-container>
 </div>
+<ng-container *ngIf="addNewProject">
+    <div class="addingForm">
+        <form class="col-12">
+            <div class="col-12 mb-3">
+                <input type="text" class="form-control" placeholder="write your new project name.."
+                    [(ngModel)]="newProjName" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="col-12 mb-3">
+                <input type="text" class="form-control" placeholder="paste here image url .."
+                    [(ngModel)]="newProjimagePath" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="col-12 mb-3">
+                <textarea type="text" class="form-control" placeholder="write description for your project.."
+                    [(ngModel)]="newProjDesc" [ngModelOptions]="{standalone: true}"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" (click)="openAddForm(); addnewProject()">Submit</button>
+        </form>
+    </div>
+</ng-container>
 <p class="mb-3">
     <ng-container *ngIf="allProjects.length === 0">
         (there is no projects)
@@ -31,7 +50,12 @@
                     </ng-container>
                 </div>
                 <div class="card-body">
-                    <h4>{{ proj.name }}</h4>
+                    <label class="col-10">
+                        <input [class]="proj.editStatus?'form-control':'form-control-plaintext'"
+                            class="labelHeader collapsed" type="text"
+                            [style]="!proj.editStatus?'cursor:default':'cursor:text'" data-bs-toggle="collapse"
+                            [value]="proj.name" [disabled]="!proj.editStatus">
+                    </label>
                     <textarea [value]="proj.description" style="height:140px"
                         [class]="proj.editStatus?'form-control':'form-control-plaintext'"
                         [readonly]="!proj.editStatus"></textarea>

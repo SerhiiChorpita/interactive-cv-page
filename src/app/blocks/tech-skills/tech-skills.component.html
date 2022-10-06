@@ -1,21 +1,41 @@
 <div class="sticky">
     <h4>Tech skills</h4>
     <ng-container *ngIf="editStatusT">
-        <button class="addNewTechSkill-btn"></button>
+        <button class="addNewTechSkill-btn" (click)="openAddForm()"></button>
     </ng-container>
 </div>
-<div class="tech-skills" onchange="ngOnChanges(editStatusS)">
+<ng-container *ngIf="addNewTechSkill">
+    <div class="addingForm">
+        <form class="col-12">
+            <div class="col-12 mb-3">
+                <input type="text" class="form-control" placeholder="write your new tech skill.." [(ngModel)]="techName"
+                    [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="col-12 mb-3">
+                <textarea type="text" class="form-control" placeholder="write description for your tech skill.."
+                    [(ngModel)]="techDescr" [ngModelOptions]="{standalone: true}"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" (click)="openAddForm(); addTechSkill()">Submit</button>
+        </form>
+    </div>
+</ng-container>
+<div class="tech-skills" onchange="ngOnChanges(editStatusT)">
     <ng-container *ngFor="let skill of techSkills; index as i">
         <div class="container my-2">
-            <div class="container row d-flex align-items-center">
-                <label (click)="arrowDirection(i)">
+            <div class="p-0 m-0 container row d-flex align-items-center">
+                <label (click)="arrowDirection(i)" class="col-10">
                     <input [class]="editStatusT?'form-control':'form-control-plaintext'" class="collapsed" type="text"
-                        data-bs-toggle="collapse" [value]="skill.arrowDirection?skill.name+'⮙':skill.name+'⮛'"
-                        aria-expanded="true" [disabled]="!skill.editStatus">
+                        [style]="!skill.editStatus?'cursor:pointer':'cursor:text'" data-bs-toggle="collapse"
+                        [value]="skill.arrowDirection?'⮙'+skill.name:'⮛'+skill.name" aria-expanded="true"
+                        [disabled]="!skill.editStatus">
                 </label>
                 <ng-container *ngIf="editStatusT">
-                    <div [class]="skill.editStatus?'save':'pencil-skill'"
-                        (click)="skill.editStatus?saveChanges(i):changeskill(i)">
+                    <div class="tools">
+                        <div [class]="skill.editStatus?'save':'pencil-skill'"
+                            (click)="skill.editStatus?saveChanges(i):changeskill(i)">
+                        </div>
+                        <div class="basket" (click)="deleteSkill(i,skill.name )">
+                        </div>
                     </div>
                 </ng-container>
             </div>
@@ -26,22 +46,3 @@
         </div>
     </ng-container>
 </div>
-
-<ng-container *ngIf="addNewTechSkill">
-    <form>
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</ng-container>

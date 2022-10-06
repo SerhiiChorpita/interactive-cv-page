@@ -9,7 +9,14 @@
 }
 
 label {
-  width: 90%;
+  width: 82%;
+}
+.tools {
+  display: flex;
+  flex-flow: row;
+  width: 50px;
+  height: 25px;
+  padding: 0;
 }
 .textSkill {
   display: block;
@@ -29,7 +36,8 @@ label {
   border-radius: 0 0 15px 15px;
   box-shadow: -1px 11px 8px 0px lightgrey;
 }
-.pencil-skill {
+.pencil-skill,
+.basket {
   cursor: pointer;
   display: block;
   width: 25px;
@@ -42,6 +50,12 @@ label {
   transition: all 0.3s;
   &:hover {
     background-image: url(../../../assets/additional-pictures/pen-black.svg);
+  }
+}
+.basket {
+  background-image: url(../../../assets/additional-pictures/trash-alt-blue.svg);
+  &:hover {
+    background-image: url(../../../assets/additional-pictures/trash-black.svg);
   }
 }
 .save {
@@ -67,7 +81,7 @@ label {
 .sticky {
   display: flex;
   flex-flow: row;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   text-align: center;
   width: 100%;
@@ -75,6 +89,8 @@ label {
   position: sticky;
   top: 0;
   left: 0;
+  border-radius: 0 0 15px 15px;
+  padding: 0 10px;
   z-index: 999;
   background: rgb(255, 255, 255);
   background: linear-gradient(0deg, $mainColor 19%, ghostwhite 91%);
@@ -90,6 +106,7 @@ label {
   background-size: 100%;
   background-position: center;
   background-color: beige;
+  margin-left: auto;
   transition: all 0.3s;
   animation-name: color;
   animation-duration: 2s;
